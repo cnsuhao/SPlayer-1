@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/Icon">
+        <file>SPlayer.ico</file>
+        <file>MsgBox_Error.png</file>
+        <file>MsgBox_Information.png</file>
+        <file>MsgBox_Normal.png</file>
+        <file>MsgBox_Question.png</file>
+    </qresource>
+</RCC>
