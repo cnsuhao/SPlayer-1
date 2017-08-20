@@ -180,6 +180,8 @@ private slots:
 
     void help();
 
+    void loadExternalSubtitleFile(const QString &fileName);
+
 protected:
     void closeEvent(QCloseEvent *e);
     void timerEvent(QTimerEvent *e);

@@ -663,7 +663,9 @@ void MainWindow::changeAudioTrack(QAction *action)
         return;
     }
     if (track < 0) {
-        QString f = QFileDialog::getOpenFileName(0, tr("Open an external audio track"));
+        QString f =
+                QFileDialog::getOpenFileName(0, tr("Open an external audio track")
+                               , QFileInfo(Config::instance().lastFile()).absolutePath());
         if (f.isEmpty()) {
             action->toggle();
             return;
@@ -2082,10 +2084,26 @@ void MainWindow::toggleSubtitleAutoLoad(bool value)
 
 void MainWindow::openSubtitle()
 {
-    QString file = QFileDialog::getOpenFileName(nullptr, tr("Open a subtitle file"));
-    if (file.isEmpty())
-        return;
-    mpSubtitle->setFile(file);
+    QFileDialog fileDialog;
+    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+    fileDialog.setWindowTitle(tr("Open a subtitle file"));
+    QStringList filters;
+    filters << tr("Subtitle files (*.ass *.srt *.sub *.idx)")
+            << tr("Any files (*)");
+    fileDialog.setNameFilters(filters);
+    fileDialog.setDirectory(QFileInfo(Config::instance().lastFile()).absoluteDir());
+    if (fileDialog.exec() == QDialog::Accepted)
+    {
+        QString file = fileDialog.selectedUrls().constFirst().toLocalFile();
+        if (file.isEmpty())
+        {
+            return;
+        }
+        if (QFileInfo(file).exists() && QFileInfo(file).isFile())
+        {
+            loadExternalSubtitleFile(file);
+        }
+    }
 }
 
 void MainWindow::setSubtitleCharset(const QString &charSet)
@@ -2575,6 +2593,21 @@ void MainWindow::help()
     mpHelpBox->show();
 }
 
+void MainWindow::loadExternalSubtitleFile(const QString &fileName)
+{
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+    if (QFileInfo(fileName).exists() && QFileInfo(fileName).isFile())
+    {
+        qDebug() << QString::fromLatin1("[Load external subtitle] : \"")
+                 << fileName.toUtf8().constData()
+                 << QString::fromLatin1("\" loaded.");
+        mpSubtitle->setFile(fileName);
+    }
+}
+
 void MainWindow::destroyFullscreenControlPanel()
 {
     if (!mpFullscreenControlPanel)
@@ -2800,22 +2833,51 @@ void MainWindow::autoLoadExternalSubtitleFile(const QString &filePath)
 {
     if (!mpPlayer)
     {
-        qDebug() << "[Auto load external subtitle] : AVPlayer is NULL.";
+        qDebug() << QString::fromLatin1("[Load external subtitle] : AVPlayer is NULL.");
         return;
     }
     if (mpPlayer->subtitleStreamCount() > 0)
     {
-        qDebug() << "[Auto load external subtitle] : Already has sub streams."
-                   << " Sub stream count : "
-                   << mpPlayer->subtitleStreamCount();
+        qDebug() << QString::fromLatin1("[Load external subtitle] : Already has ")
+                 << mpPlayer->subtitleStreamCount()
+                 << QString::fromLatin1(" sub streams.");
         return;
     }
     if (filePath.isEmpty())
     {
-        qDebug() << "[Auto load external subtitle] : Empty file path : "
-                   << filePath.toUtf8().constData();
+        qDebug() << QString::fromLatin1("[Load external subtitle] : Empty file path : \"")
+                 << filePath.toUtf8().constData()
+                 << QString::fromLatin1("\"");
         return;
     }
+    //下面这一段是查找和给定文件除后缀名外文件名完全相同的文件，找到就自动加载后返回
+    QString fileDir = QFileInfo(filePath).absolutePath() + QString::fromLatin1("/");
+    QString subFileBasePath = fileDir + QFileInfo(filePath).completeBaseName();
+    QString subFileFullPath = subFileBasePath + QString::fromLatin1(".ass");
+    if (QFileInfo(subFileFullPath).exists() && QFileInfo(subFileFullPath).isFile())
+    {
+        loadExternalSubtitleFile(subFileFullPath);
+        return;
+    }
+    subFileFullPath = subFileBasePath + QString::fromLatin1(".srt");
+    if (QFileInfo(subFileFullPath).exists() && QFileInfo(subFileFullPath).isFile())
+    {
+        loadExternalSubtitleFile(subFileFullPath);
+        return;
+    }
+    subFileFullPath = subFileBasePath + QString::fromLatin1(".sub");
+    if (QFileInfo(subFileFullPath).exists() && QFileInfo(subFileFullPath).isFile())
+    {
+        loadExternalSubtitleFile(subFileFullPath);
+        return;
+    }
+    subFileFullPath = subFileBasePath + QString::fromLatin1(".idx");
+    if (QFileInfo(subFileFullPath).exists() && QFileInfo(subFileFullPath).isFile())
+    {
+        loadExternalSubtitleFile(subFileFullPath);
+        return;
+    }
+    //下面这一段是查找和给定文件名字相似的文件，找到就自动加载第一个（如果有不止一个的话）后返回
     QDir dir = QFileInfo(filePath).absoluteDir();
     if (!dir.exists())
     {
@@ -2833,23 +2895,14 @@ void MainWindow::autoLoadExternalSubtitleFile(const QString &filePath)
     {
         return;
     }
-    QString oriBaseName = QFileInfo(filePath).completeBaseName().remove(QRegExp("\\s"));
     for (int i = 0; i <= (fiList.count() - 1); ++i)
     {
-        QString curBaseName = fiList.at(i).completeBaseName().remove(QRegExp("\\s"));
-        if (curBaseName != oriBaseName)
+        if (fiList.at(i).baseName() == QFileInfo(filePath).baseName())
         {
-            fiList.removeAt(i);
+            loadExternalSubtitleFile(fiList.at(i).absoluteFilePath());
+            return;
         }
     }
-    if (fiList.count() <= 0)
-    {
-        return;
-    }
-    QString subtitleFile = fiList.constFirst().absoluteFilePath();
-    qDebug() << "[Auto load external subtitle] : Load external sub file : "
-             << subtitleFile.toUtf8().constData();
-    mpSubtitle->setFile(subtitleFile);
 }
 
 void MainWindow::workaroundRendererSize()

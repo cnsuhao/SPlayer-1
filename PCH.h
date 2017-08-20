@@ -17,7 +17,7 @@
 #define AppID               "{B9D31A8E-513D-4BAF-984D-6469FE5543D5}"
 #define AppName             "SPlayer"
 #define AppDisplayName      "SPlayer - Enjoy the simple life"
-#define AppVersion          "1.1.1.0"
+#define AppVersion          "1.1.2.0"
 #define AppPublisher        "wangwenx190"
 #define AppPublisherEmail   "chymxuan@foxmail.com"
 #define AppCopyright        "Copyright © 2017 by wangwenx190. All rights reserved."
