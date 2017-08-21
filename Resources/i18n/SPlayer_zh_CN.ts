@@ -98,58 +98,62 @@
 <context>
     <name>AboutBox</name>
     <message>
-        <location filename="../../AboutBox.cpp" line="34"/>
-        <location filename="../../AboutBox.cpp" line="35"/>
         <source>About  </source>
-        <translation>关于  </translation>
+        <translation type="vanished">关于  </translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="58"/>
+        <location filename="../../AboutBox.cpp" line="34"/>
+        <location filename="../../AboutBox.cpp" line="36"/>
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="../../AboutBox.cpp" line="61"/>
         <source>Licenses</source>
         <translation>许可协议</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="77"/>
+        <location filename="../../AboutBox.cpp" line="81"/>
         <source>A high performance multimedia player based on QtAV, Qt and FFmpeg.</source>
         <translation>一个基于QtAV、Qt和FFmpeg的高性能多媒体播放器。</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="78"/>
+        <location filename="../../AboutBox.cpp" line="82"/>
         <source>Distributed under the terms of GPLv3 or later.</source>
         <translation>本软件以GPL协议第三版或更新的版本授权分发。</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="79"/>
+        <location filename="../../AboutBox.cpp" line="83"/>
         <source>Sochoow City-&gt;Sochoow University, Jiang Su Province, China</source>
         <translation>中华人民共和国，江苏省，苏州市，苏州大学</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="80"/>
+        <location filename="../../AboutBox.cpp" line="84"/>
         <source>Copyright © 2017 by </source>
         <translation>版权所有 © 2017年， </translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="81"/>
+        <location filename="../../AboutBox.cpp" line="85"/>
         <source>All rights reserved.</source>
         <translation>保留所有权利。</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="82"/>
+        <location filename="../../AboutBox.cpp" line="86"/>
         <source>E-mail address</source>
         <translation>电子邮箱</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="83"/>
+        <location filename="../../AboutBox.cpp" line="87"/>
         <source>Donate</source>
         <translation>在线捐助</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="84"/>
+        <location filename="../../AboutBox.cpp" line="88"/>
         <source>Source code</source>
         <translation>获取源码</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="85"/>
+        <location filename="../../AboutBox.cpp" line="89"/>
         <source>Home page</source>
         <translation>网站主页</translation>
     </message>
@@ -537,19 +541,19 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="391"/>
-        <location filename="../../MainWindow.cpp" line="2975"/>
+        <location filename="../../MainWindow.cpp" line="2971"/>
         <source>Setup</source>
         <translation>设置</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="388"/>
-        <location filename="../../MainWindow.cpp" line="2977"/>
+        <location filename="../../MainWindow.cpp" line="2973"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="357"/>
-        <location filename="../../MainWindow.cpp" line="2970"/>
+        <location filename="../../MainWindow.cpp" line="2966"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
@@ -660,7 +664,7 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="1013"/>
-        <location filename="../../MainWindow.cpp" line="3016"/>
+        <location filename="../../MainWindow.cpp" line="3012"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
@@ -693,12 +697,12 @@
         <translation type="vanished">版权所有 © 2017年， </translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3022"/>
+        <location filename="../../MainWindow.cpp" line="3018"/>
         <source>Play next file</source>
         <translation>播放下一个文件</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3028"/>
+        <location filename="../../MainWindow.cpp" line="3024"/>
         <source>Play previous file</source>
         <translation>播放上一个文件</translation>
     </message>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="2338"/>
-        <location filename="../../MainWindow.cpp" line="3040"/>
+        <location filename="../../MainWindow.cpp" line="3036"/>
         <source>Mute</source>
         <translation>静音</translation>
     </message>
@@ -802,67 +806,67 @@
         <translation type="vanished">更多信息请阅读 Wiki： </translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2926"/>
+        <location filename="../../MainWindow.cpp" line="2922"/>
         <source>Silvery</source>
         <translation>银色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2929"/>
+        <location filename="../../MainWindow.cpp" line="2925"/>
         <source>Blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2932"/>
+        <location filename="../../MainWindow.cpp" line="2928"/>
         <source>Light Blue</source>
         <translation>浅蓝色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2935"/>
+        <location filename="../../MainWindow.cpp" line="2931"/>
         <source>Dark Blue</source>
         <translation>深蓝色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2938"/>
+        <location filename="../../MainWindow.cpp" line="2934"/>
         <source>Gray</source>
         <translation>灰色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2941"/>
+        <location filename="../../MainWindow.cpp" line="2937"/>
         <source>Light Gray</source>
         <translation>浅灰色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2944"/>
+        <location filename="../../MainWindow.cpp" line="2940"/>
         <source>Dark Gray</source>
         <translation>深灰色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2947"/>
+        <location filename="../../MainWindow.cpp" line="2943"/>
         <source>Black</source>
         <translation>黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2950"/>
+        <location filename="../../MainWindow.cpp" line="2946"/>
         <source>Light Black</source>
         <translation>浅黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2953"/>
+        <location filename="../../MainWindow.cpp" line="2949"/>
         <source>Dark Black</source>
         <translation>深黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2956"/>
+        <location filename="../../MainWindow.cpp" line="2952"/>
         <source>PS Black</source>
         <translation>PS黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2959"/>
+        <location filename="../../MainWindow.cpp" line="2955"/>
         <source>Flat Black</source>
         <translation>黑色扁平</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2962"/>
+        <location filename="../../MainWindow.cpp" line="2958"/>
         <source>Flat White</source>
         <translation>白色扁平</translation>
     </message>
@@ -875,13 +879,13 @@
         <translation type="vanished">上一个</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3034"/>
+        <location filename="../../MainWindow.cpp" line="3030"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="358"/>
-        <location filename="../../MainWindow.cpp" line="2972"/>
+        <location filename="../../MainWindow.cpp" line="2968"/>
         <source>Open URL</source>
         <translation>打开 URL</translation>
     </message>
@@ -914,7 +918,7 @@
         <translation type="vanished">保留所有权利。</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2980"/>
+        <location filename="../../MainWindow.cpp" line="2976"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
