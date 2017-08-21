@@ -103,57 +103,57 @@
     </message>
     <message>
         <location filename="../../AboutBox.cpp" line="34"/>
-        <location filename="../../AboutBox.cpp" line="36"/>
+        <location filename="../../AboutBox.cpp" line="35"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="61"/>
+        <location filename="../../AboutBox.cpp" line="59"/>
         <source>Licenses</source>
         <translation>许可协议</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="81"/>
+        <location filename="../../AboutBox.cpp" line="79"/>
         <source>A high performance multimedia player based on QtAV, Qt and FFmpeg.</source>
         <translation>一个基于QtAV、Qt和FFmpeg的高性能多媒体播放器。</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="82"/>
+        <location filename="../../AboutBox.cpp" line="80"/>
         <source>Distributed under the terms of GPLv3 or later.</source>
         <translation>本软件以GPL协议第三版或更新的版本授权分发。</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="83"/>
+        <location filename="../../AboutBox.cpp" line="81"/>
         <source>Sochoow City-&gt;Sochoow University, Jiang Su Province, China</source>
         <translation>中华人民共和国，江苏省，苏州市，苏州大学</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="84"/>
+        <location filename="../../AboutBox.cpp" line="82"/>
         <source>Copyright © 2017 by </source>
         <translation>版权所有 © 2017年， </translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="85"/>
+        <location filename="../../AboutBox.cpp" line="83"/>
         <source>All rights reserved.</source>
         <translation>保留所有权利。</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="86"/>
+        <location filename="../../AboutBox.cpp" line="84"/>
         <source>E-mail address</source>
         <translation>电子邮箱</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="87"/>
+        <location filename="../../AboutBox.cpp" line="85"/>
         <source>Donate</source>
         <translation>在线捐助</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="88"/>
+        <location filename="../../AboutBox.cpp" line="86"/>
         <source>Source code</source>
         <translation>获取源码</translation>
     </message>
     <message>
-        <location filename="../../AboutBox.cpp" line="89"/>
+        <location filename="../../AboutBox.cpp" line="87"/>
         <source>Home page</source>
         <translation>网站主页</translation>
     </message>

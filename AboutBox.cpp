@@ -31,10 +31,8 @@ AboutBox::AboutBox(QWidget *parent) : StandardDialog(parent)
 {
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
 
-    GetHeader()->SetTitleText(tr("About") + QString::fromLatin1("  ")
-                              + QString::fromLatin1(AppName));
-    setWindowTitle(tr("About") + QString::fromLatin1("  ")
-                              + QString::fromLatin1(AppName));
+    GetHeader()->SetTitleText(tr("About"));
+    setWindowTitle(tr("About"));
     GetHeader()->SetTitleCenter(false);
     GetHeader()->SetLogoVisible(false);
     GetHeader()->SetSkinVisible(false);
@@ -72,7 +70,7 @@ QString AboutBox::aboutApp_HTML()
 {
     static QString aboutApp =
             QString::fromLatin1("<img src='qrc:/Icon/SPlayer.ico'><h3>"
-                                AppName "        " AppVersion "</h3>\n"
+                                AppName "    " AppVersion "</h3>\n"
             "<p>%1</p>\n<p>%2</p>\n<p>%3</p>\n<p>%4</p>\n<p>%5</p>\n"
             "<p>%6 : <a href='" AppPublisherEmail "'>" AppPublisherEmail "</a></p>\n"
             "<p>%7 : <a href='" AppDonateURL "'>" AppDonateURL "</a></p>\n"
