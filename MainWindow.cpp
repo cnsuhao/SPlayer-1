@@ -1493,6 +1493,14 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                     toggleMuteState();
                     return true;
                     break;
+                case Qt::Key_PageDown:
+                    seekNextChapter();
+                    return true;
+                    break;
+                case Qt::Key_PageUp:
+                    seekPreviousChapter();
+                    return true;
+                    break;
                 default:
                     return false;
                 }
@@ -2608,6 +2616,24 @@ void MainWindow::loadExternalSubtitleFile(const QString &fileName)
     }
 }
 
+void MainWindow::seekNextChapter()
+{
+    if (!mpPlayer || !mpPlayer->isLoaded())
+    {
+        return;
+    }
+    mpPlayer->seekNextChapter();
+}
+
+void MainWindow::seekPreviousChapter()
+{
+    if (!mpPlayer || !mpPlayer->isLoaded())
+    {
+        return;
+    }
+    mpPlayer->seekPreviousChapter();
+}
+
 void MainWindow::destroyFullscreenControlPanel()
 {
     if (!mpFullscreenControlPanel)
@@ -2648,13 +2674,16 @@ void MainWindow::createShortcuts()
     connect(togglePlayPauseShortcut, SIGNAL(activated()), this, SLOT(togglePlayPause()));
 
     QShortcut *toggleFullscreenShortcut = new QShortcut(QKeySequence::FullScreen, this);
-    connect(toggleFullscreenShortcut, SIGNAL(activated()), this, SLOT(toggleFullscreen()));
+    connect(toggleFullscreenShortcut, SIGNAL(activated()), this
+                                                              , SLOT(toggleFullscreen()));
 
     QShortcut *toggleFullscreenShortcut2 = new QShortcut(Qt::Key_Return, this);
-    connect(toggleFullscreenShortcut2, SIGNAL(activated()), this, SLOT(toggleFullscreen()));
+    connect(toggleFullscreenShortcut2, SIGNAL(activated()), this
+                                                              , SLOT(toggleFullscreen()));
 
     QShortcut *toggleFullscreenShortcut3 = new QShortcut(Qt::Key_Enter, this);
-    connect(toggleFullscreenShortcut3, SIGNAL(activated()), this, SLOT(toggleFullscreen()));
+    connect(toggleFullscreenShortcut3, SIGNAL(activated()), this
+                                                              , SLOT(toggleFullscreen()));
 
     QShortcut *toggleMuteShortcut = new QShortcut(Qt::Key_M, this);
     connect(toggleMuteShortcut, SIGNAL(activated()), this, SLOT(toggleMuteState()));
@@ -2670,6 +2699,14 @@ void MainWindow::createShortcuts()
 
     QShortcut *decreaseShortcut = new QShortcut(Qt::Key_Down, this);
     connect(decreaseShortcut, SIGNAL(activated()), this, SLOT(decreaseVolume()));
+
+    QShortcut *nextChapterShortcut = new QShortcut(QKeySequence::MoveToNextPage, this);
+    connect(nextChapterShortcut, SIGNAL(activated()), this, SLOT(seekNextChapter()));
+
+    QShortcut *previousChapterShortcut = new QShortcut(QKeySequence::MoveToPreviousPage
+                                                                                  , this);
+    connect(previousChapterShortcut, SIGNAL(activated()), this
+                                                           , SLOT(seekPreviousChapter()));
 }
 
 void MainWindow::createFullScreenProgressBar()

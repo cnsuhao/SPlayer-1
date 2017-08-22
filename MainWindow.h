@@ -182,6 +182,9 @@ private slots:
 
     void loadExternalSubtitleFile(const QString &fileName);
 
+    void seekNextChapter();
+    void seekPreviousChapter();
+
 protected:
     void closeEvent(QCloseEvent *e);
     void timerEvent(QTimerEvent *e);

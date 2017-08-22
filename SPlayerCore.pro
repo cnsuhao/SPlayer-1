@@ -54,7 +54,7 @@ RC_ICONS = $$PWD/Resources/icons/SPlayer.ico
 
 RC_LANG = 0x0004
 
-VERSION = 1.1.2.0
+VERSION = 1.2.0.0
 
 QMAKE_TARGET_COMPANY = "wangwenx190"
 
