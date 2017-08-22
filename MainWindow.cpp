@@ -2839,7 +2839,7 @@ void MainWindow::autoLoadExternalSubtitleFile(const QString &filePath)
     if (mpPlayer->subtitleStreamCount() > 0)
     {
         qDebug() << QString::fromLatin1("[Load external subtitle] : Already has ")
-                 << mpPlayer->subtitleStreamCount()
+                 << QString::number(mpPlayer->subtitleStreamCount())
                  << QString::fromLatin1(" sub streams.");
         return;
     }
