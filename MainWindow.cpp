@@ -2750,41 +2750,47 @@ void MainWindow::addSimilarFilesToPlayList(const QString &filePath)
     {
         return;
     }
-    //从文件列表中去除自身
-    /*for (int i = 0; i <= (fiList.count() - 1); ++i)
-    {
-        if (fiList.at(i).absoluteFilePath() == filePath)
-        {
-            fiList.removeAt(i);
-        }
-    }
-    if (fiList.count() <= 0)
-    {
-        return;
-    }*/
+    QFileInfoList m_playList;
     if (1)
     {
-        QString fn = QFileInfo(filePath).completeBaseName().remove(QRegExp("\\s"));
+        QString fn = QFileInfo(filePath).completeBaseName();
         if (Common::isDigitStr(fn))
         {
             for (int i = 0; i <= (fiList.count() - 1); ++i)
             {
-                QString newFn = fiList.at(i).completeBaseName().remove(QRegExp("\\s"));
-                if (!Common::isDigitStr(newFn))
+                QString newFn = fiList.at(i).completeBaseName();
+                if (Common::isDigitStr(newFn))
+                {
+                    m_playList.append(fiList.at(i));
+                }
+            }
+            if (m_playList.count() <= 1)
+            {
+                return;
+            }
+            else
+            {
+                goto Label_PlayList_Add_File_Names;
+            }
+        }
+    }
+    /*if (mpPlayList->rowCount() >= 1)
+    {
+        for (int i = 0; i <= (fiList.count() - 1); ++i)
+        {
+            for (int j = 0; j <= (mpPlayList->rowCount() - 1); ++j)
+            {
+                if (fiList.at(i).absoluteFilePath() == mpPlayList->itemAt(j).url())
                 {
                     fiList.removeAt(i);
                 }
             }
         }
-        if (fiList.count() <= 1)
-        {
-            return;
-        }
-        else
-        {
-            goto Label_Add_File_Names;
-        }
     }
+    if (fiList.count() <= 1)
+    {
+        return;
+    }*/
     for (int i = 0; i <= (fiList.count() - 1); ++i)
     {
         QString originalBaseName = QFileInfo(filePath).baseName();
@@ -2801,49 +2807,29 @@ void MainWindow::addSimilarFilesToPlayList(const QString &filePath)
         QString originalFirstName2 =
                 QFileInfo(filePath).fileName().split('_', QString::SkipEmptyParts
                                                       , Qt::CaseInsensitive).constFirst();
-        if (currentFirstName1.remove(QRegExp("\\s"))
-                != originalFirstName1.remove(QRegExp("\\s"))
-                && currentFirstName2.remove(QRegExp("\\s"))
-                != originalFirstName2.remove(QRegExp("\\s"))
-                && currentBaseName.remove(QRegExp("\\s"))
-                != originalBaseName.remove(QRegExp("\\s")))
+        if (currentFirstName1.toLower() == originalFirstName1.toLower()
+                || currentFirstName2.toLower() == originalFirstName2.toLower()
+                || currentBaseName.toLower() == originalBaseName.toLower())
         {
-            fiList.removeAt(i);
+            m_playList.append(fiList.at(i));
         }
     }
-    if (fiList.count() <= 1)
-    {
-        return;
-    }
-    if (mpPlayList->rowCount() >= 1)
-    {
-        for (int i = 0; i <= (fiList.count() - 1); ++i)
-        {
-            for (int j = 0; j <= (mpPlayList->rowCount() - 1); ++j)
-            {
-                if (fiList.at(i).absoluteFilePath() == mpPlayList->itemAt(j).url())
-                {
-                    fiList.removeAt(i);
-                }
-            }
-        }
-    }
-    if (fiList.count() <= 1)
+    if (m_playList.count() <= 1)
     {
         return;
     }
 
-Label_Add_File_Names:
-    int curNum = fiList.indexOf(QFileInfo(filePath));
+Label_PlayList_Add_File_Names:
+    int curNum = m_playList.indexOf(QFileInfo(filePath));
     if (curNum < 0)
     {
         return;
     }
     int countNum = 0;
-    for (int i = (curNum + 1); i <= (fiList.count() - 1); ++i)
+    for (int i = (curNum + 1); i <= (m_playList.count() - 1); ++i)
     {
-        QString url = fiList.at(i).absoluteFilePath();
-        QString title = fiList.at(i).fileName();
+        QString url = m_playList.at(i).absoluteFilePath();
+        QString title = m_playList.at(i).fileName();
         PlayListItem item;
         item.setUrl(url);
         item.setTitle(title);
@@ -2854,8 +2840,8 @@ Label_Add_File_Names:
     }
     for (int i = 0; i <= (curNum - 1); ++i)
     {
-        QString url = fiList.at(i).absoluteFilePath();
-        QString title = fiList.at(i).fileName();
+        QString url = m_playList.at(i).absoluteFilePath();
+        QString title = m_playList.at(i).fileName();
         PlayListItem item;
         item.setUrl(url);
         item.setTitle(title);
@@ -2934,7 +2920,7 @@ void MainWindow::autoLoadExternalSubtitleFile(const QString &filePath)
     }
     for (int i = 0; i <= (fiList.count() - 1); ++i)
     {
-        if (fiList.at(i).baseName() == QFileInfo(filePath).baseName())
+        if (fiList.at(i).baseName().toLower() == QFileInfo(filePath).baseName().toLower())
         {
             loadExternalSubtitleFile(fiList.at(i).absoluteFilePath());
             return;
