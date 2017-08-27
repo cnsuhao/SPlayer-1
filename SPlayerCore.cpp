@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QIcon>
 #include <QFont>
+#include <QMimeDatabase>
 #include <QtAV/AVPlayer.h>
 #include <QtAV/VideoOutput.h>
 #include <QtAVWidgets>
@@ -171,7 +172,11 @@ int SPlayerCore::exec(int argc, char *argv[])
         QFileInfo fi(app.arguments().at(1));
         if (fi.exists() && fi.isFile())
         {
-            window.play(app.arguments().at(1));
+            QMimeDatabase mdb;
+            if (Common::supportedMimeTypes().contains(mdb.mimeTypeForFile(fi).name()))
+            {
+                window.play(app.arguments().at(1));
+            }
         }
     }
 
