@@ -19,7 +19,8 @@ QT += \
     avwidgets
 
 CONFIG += \
-    C++11
+    C++11 \
+    C++14
 
 TRANSLATIONS += \
     $$PWD/Resources/i18n/SPlayer_zh_CN.ts
