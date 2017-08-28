@@ -979,7 +979,11 @@ void MainWindow::togglePlayPause()
     }
     if (mpOSD)
     {
-        killTimer(mOSDTimer);
+        if (mOSDTimer)
+        {
+            killTimer(mOSDTimer);
+            mOSDTimer = 0;
+        }
         mpOSD->setShowType(OSD::ShowType::ShowPlayPauseStatus);
         mOSDTimer = startTimer(3000);
     }
@@ -1169,7 +1173,11 @@ void MainWindow::onStopPlay()
     ScreenSaver::instance().enable();
     toggleRepeat(false);
     //mRepeateMax = 0;
-    killTimer(mCursorTimer);
+    if (mCursorTimer)
+    {
+        killTimer(mCursorTimer);
+        mCursorTimer = 0;
+    }
     unsetCursor();
     if (m_preview)
         m_preview->setFile(QString());
@@ -1253,7 +1261,11 @@ void MainWindow::setVolume(bool isDevUse)
         }
         if (mpOSD)
         {
-            killTimer(mOSDTimer);
+            if (mOSDTimer)
+            {
+                killTimer(mOSDTimer);
+                mOSDTimer = 0;
+            }
             mpOSD->setShowType(OSD::ShowType::ShowCurrentVolumePercent);
             mOSDTimer = startTimer(3000);
         }
@@ -1301,7 +1313,11 @@ void MainWindow::timerEvent(QTimerEvent *e)
         {
             if (mpOSD)
             {
-                killTimer(mOSDTimer);
+                if (mOSDTimer)
+                {
+                    killTimer(mOSDTimer);
+                    mOSDTimer = 0;
+                }
                 mpOSD->setShowType(OSD::ShowType::ShowCurrentLocalTime);
             }
         }
@@ -1555,6 +1571,31 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
     return StandardDialog::eventFilter(obj, event);
     //return true; //false: for text input
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() != QEvent::WindowStateChange)
+    {
+        StandardDialog::changeEvent(event);
+        return;
+    }
+    if (!mpPlayer)
+    {
+        StandardDialog::changeEvent(event);
+        return;
+    }
+    if (windowState() == Qt::WindowMinimized)
+    {
+        if (mpPlayer->isPlaying())
+        {
+            if (!mpPlayer->isPaused())
+            {
+                togglePlayPause();
+            }
+        }
+    }
+    StandardDialog::changeEvent(event);
 }
 
 /*bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
@@ -2169,6 +2210,10 @@ void MainWindow::toggleFullscreen(bool isDevUse)
     //但只要窗口重绘就不会发生这个问题，但不知为什么，调用窗口的update()并不好用，调用
     //mpPlayer->renderer->widget()->update()也不好用，而且调整调用的地方也不管用
     //没有办法，只能先把窗口整个隐藏掉，最后再显示出来，强迫窗口整体刷新，只有这个笨办法是有效果的
+    //只有暂停时会这样，我曾试过先判断有没有暂停，再去决定是否隐藏窗口，但会出现一些比较奇怪的问题
+    //就是全屏时暂停后切换全屏/窗口状态会导致窗口隐藏掉显示不出来，具体原因暂时查不出来，可能是
+    //我对Qt处理事件的流程还不熟悉的缘故，所以在解决这个问题前就暂时先不判断了，所有情况都是先隐藏
+    //之后再显示出来，不区别对待
     hide();
     setWindowState(windowState() ^ Qt::WindowFullScreen);
     handleFullscreenChange();
@@ -2361,7 +2406,11 @@ void MainWindow::toggleMuteState()
     }
     if (mpOSD)
     {
-        killTimer(mOSDTimer);
+        if (mOSDTimer)
+        {
+            killTimer(mOSDTimer);
+            mOSDTimer = 0;
+        }
         mpOSD->setShowType(OSD::ShowType::ShowMuteStatus);
         mOSDTimer = startTimer(3000);
     }
@@ -2466,7 +2515,11 @@ void MainWindow::hideOSD()
 {
     if (mpOSD)
     {
-        killTimer(mOSDTimer);
+        if (mOSDTimer)
+        {
+            killTimer(mOSDTimer);
+            mOSDTimer = 0;
+        }
         mpOSD->setShowType(OSD::ShowType::ShowNone);
     }
 }
@@ -2516,7 +2569,11 @@ void MainWindow::seekForward()
         mpPlayer->seekForward();
         if (mpOSD)
         {
-            killTimer(mOSDTimer);
+            if (mOSDTimer)
+            {
+                killTimer(mOSDTimer);
+                mOSDTimer = 0;
+            }
             mpOSD->setShowType(OSD::ShowType::ShowCurrentAndTotalTime);
             mOSDTimer = startTimer(3000);
         }
@@ -2532,7 +2589,11 @@ void MainWindow::seekBackward()
         mpPlayer->seekBackward();
         if (mpOSD)
         {
-            killTimer(mOSDTimer);
+            if (mOSDTimer)
+            {
+                killTimer(mOSDTimer);
+                mOSDTimer = 0;
+            }
             mpOSD->setShowType(OSD::ShowType::ShowCurrentAndTotalTime);
             mOSDTimer = startTimer(3000);
         }

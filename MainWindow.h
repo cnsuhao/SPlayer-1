@@ -195,6 +195,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
     //bool nativeEvent(const QByteArray &eventType, void *message, long *result);
+    void changeEvent(QEvent *event);
 
 private:
     void workaroundRendererSize();
