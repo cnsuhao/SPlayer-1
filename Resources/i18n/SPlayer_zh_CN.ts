@@ -455,13 +455,21 @@
     </message>
     <message>
         <location filename="../../HelpBox.cpp" line="78"/>
-        <source>Volume +/- : Up / Down / Mouse Wheel</source>
-        <translation>音量 + / -：Up / Down / 鼠标滚轮</translation>
+        <source>Volume +/- : ⬆ / ⬇ / Mouse Wheel</source>
+        <translation>音量 +/-：⬆/⬇/鼠标滚轮</translation>
     </message>
     <message>
         <location filename="../../HelpBox.cpp" line="79"/>
+        <source>Seek forward/backward : ➡ / ⬅</source>
+        <translation>前进/后退：➡/⬅</translation>
+    </message>
+    <message>
+        <source>Volume +/- : Up / Down / Mouse Wheel</source>
+        <translation type="vanished">音量 + / -：Up / Down / 鼠标滚轮</translation>
+    </message>
+    <message>
         <source>Seek forward/backward : -&amp;gt; / &amp;lt;-</source>
-        <translation>前进/后退：-&amp;gt; / &amp;lt;-</translation>
+        <translation type="vanished">前进/后退：-&amp;gt; / &amp;lt;-</translation>
     </message>
     <message>
         <location filename="../../HelpBox.cpp" line="80"/>
