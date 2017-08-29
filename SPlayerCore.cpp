@@ -84,11 +84,17 @@ protected:
 
 int SPlayerCore::exec(int argc, char *argv[])
 {
-    qDebug() << aboutQtAV_PlainText().toUtf8().constData();
-
     SApplication app(argc, argv);
 
-    qDebug() << app.arguments();
+    Config::setName(QString::fromLatin1(AppName));
+
+    QDir::setCurrent(qApp->applicationDirPath());
+
+    Common::set_opengl_backend();
+
+    Common::load_qm(Config::instance().language());
+
+    Common::changeSkinByName(Config::instance().getSkin());
 
     if (app.arguments().contains(QString::fromLatin1("--assoc"), Qt::CaseInsensitive))
     {
@@ -106,16 +112,6 @@ int SPlayerCore::exec(int argc, char *argv[])
         Common::unassociateFileTypes();
         return 0;
     }
-
-    Config::setName(QString::fromLatin1(AppName));
-
-    QDir::setCurrent(qApp->applicationDirPath());
-
-    Common::set_opengl_backend();
-
-    Common::load_qm(Config::instance().language());
-
-    Common::changeSkinByName(Config::instance().getSkin());
 
     if (Config::instance().getIsAlwaysCheckAssoc())
     {
@@ -137,13 +133,6 @@ int SPlayerCore::exec(int argc, char *argv[])
         }
     }
 
-    qputenv("QTAV_LOG", QString::fromLatin1("off").toLatin1());
-    QtAV::setFFmpegLogLevel(QString::fromLatin1("off").toLatin1());
-
-    MainWindow window;
-    WindowManager::Instance()->SetMainWindow(&window);
-    window.setWindowTitle(QString::fromLatin1(AppDisplayName));
-
     HANDLE m_hAppMutex;
     int m_iMutexCreateState;
     Common::createMutex(&m_hAppMutex, &m_iMutexCreateState);
@@ -161,6 +150,13 @@ int SPlayerCore::exec(int argc, char *argv[])
     {
         //Mutex成功创建
     }
+
+    qputenv("QTAV_LOG", QString::fromLatin1("off").toLatin1());
+    QtAV::setFFmpegLogLevel(QString::fromLatin1("off").toLatin1());
+
+    MainWindow window;
+    WindowManager::Instance()->SetMainWindow(&window);
+    window.setWindowTitle(QString::fromLatin1(AppDisplayName));
 
     window.setProperty("rendererId"
                        , rendererId_from_opt_name(
