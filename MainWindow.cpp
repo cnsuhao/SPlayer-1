@@ -35,6 +35,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QFile>
+#include <QtWin>
 #include <QTextStream>
 #include "common/Common.h"
 #include "ClickableMenu.h"
@@ -68,11 +69,20 @@ using namespace QtAV;
 extern QStringList idsToNames(QVector<VideoDecoderId> ids);
 extern QVector<VideoDecoderId> idsFromNames(const QStringList& names);
 
+static const qreal kVolumeInterval = 0.04;
+static const int kVolumeSliderMax = 100;
+
+static bool canShowPreviewWindow = false;
+
+static QPoint mCurrentCursorPosition = QPoint();
+static int mTimeSliderHoverValue = 0;
+
 MainWindow::MainWindow(QWidget *parent) : StandardDialog(parent)
   , mIsReady(false)
   , mHasPendingPlay(false)
   , mCursorTimer(0)
   , mOSDTimer(0)
+  , mTimeSliderHoverTimer(0)
   , mRepeateMax(0)
   , mbStayOnTop(false)
   , mpPlayerLayout(NULL)
@@ -1211,13 +1221,7 @@ void MainWindow::seek(int value)
 {
     mpPlayer->setSeekType(AccurateSeek);
     mpPlayer->seek((qint64)value);
-    if (!m_preview || !Config::instance().previewEnabled())
-        return;
-    m_preview->setTimestamp(value);
-    m_preview->preview();
-    m_preview->setWindowFlags(m_preview->windowFlags() |Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint);
-    m_preview->resize(Config::instance().previewWidth(), Config::instance().previewHeight());
-    m_preview->show();
+    showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
 }
 
 void MainWindow::seek()
@@ -1306,6 +1310,14 @@ void MainWindow::timerEvent(QTimerEvent *e)
     if (e->timerId() == mCursorTimer)
     {
         setCursor(Qt::BlankCursor);
+    }
+    else if (e->timerId() == mTimeSliderHoverTimer)
+    {
+        if (!canShowPreviewWindow)
+        {
+            canShowPreviewWindow = true;
+            showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
+        }
     }
     else if (e->timerId() == mOSDTimer)
     {
@@ -1815,55 +1827,34 @@ void MainWindow::showInfo()
 
 void MainWindow::onTimeSliderHover(int pos, int value)
 {
-    QPoint gpos = mapToGlobal(mpTimeSlider->pos() + QPoint(pos, 30));
-    if (windowState() != Qt::WindowFullScreen)
+    mTimeSliderHoverValue = value;
+    mCurrentCursorPosition = mapToGlobal(mpTimeSlider->pos() + QPoint(pos, 30));
+    if (mTimeSliderHoverTimer == 0)
     {
-        QToolTip::showText(gpos, QTime(0, 0, 0).addMSecs(value)\
-                           .toString(QString::fromLatin1("HH:mm:ss")));
+        mTimeSliderHoverTimer = startTimer(700);
     }
-    else
+    if (Config::instance().previewEnabled())
     {
-        QToolTip::showText(mapToGlobal(QCursor::pos()), QTime(0, 0, 0).addMSecs(value)\
-                           .toString(QString::fromLatin1("HH:mm:ss")));
+        if (m_preview)
+        {
+            const int interval = 5000;
+            int cur_timestamp = m_preview->timestamp();
+            if (cur_timestamp >= mTimeSliderHoverValue - interval
+                    && cur_timestamp <= mTimeSliderHoverValue + interval)
+            {
+                return;
+            }
+        }
     }
-    if (!Config::instance().previewEnabled())
-        return;
-    if (!m_preview)
-        m_preview = new VideoPreviewWidget();
-    m_preview->setFile(mpPlayer->file());
-    m_preview->setTimestamp(value);
-    m_preview->preview();
-    const int w = Config::instance().previewWidth();
-    const int h = Config::instance().previewHeight();
-    m_preview->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint
-                              | Qt::WindowStaysOnTopHint);
-    m_preview->resize(w, h);
-    if (windowState() != Qt::WindowFullScreen)
+    if (canShowPreviewWindow)
     {
-        m_preview->move(gpos - QPoint(w/2, h));
+        showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
     }
-    else
-    {
-        QDesktopWidget desktop;
-        QPoint fullscreenPos = mapToGlobal(QPoint(QCursor::pos().x(), 0))
-                                      - QPoint(w/2, 0)
-                                      + QPoint(0, desktop.screen()->height()
-                                      - m_pWindowBottom->height()
-                                      - mpTimeSlider->height() - h);
-        m_preview->move(fullscreenPos);
-    }
-    m_preview->show();
 }
 
 void MainWindow::onTimeSliderLeave()
 {
-    if (!m_preview)
-    {
-        return;
-    }
-    m_preview->close();
-    delete m_preview;
-    m_preview = NULL;
+    hidePreviewWindow();
 }
 
 void MainWindow::handleError(const AVError &e)
@@ -2987,6 +2978,72 @@ void MainWindow::autoLoadExternalSubtitleFile(const QString &filePath)
             return;
         }
     }
+}
+
+void MainWindow::showPreviewWindow(const int value, const QPoint gpos)
+{
+    if (windowState() != Qt::WindowFullScreen)
+    {
+        QToolTip::showText(mCurrentCursorPosition, QTime(0, 0, 0).addMSecs(value)\
+                           .toString(QString::fromLatin1("HH:mm:ss")));
+    }
+    else
+    {
+        QToolTip::showText(mapToGlobal(QCursor::pos()), QTime(0, 0, 0).addMSecs(value)\
+                           .toString(QString::fromLatin1("HH:mm:ss")));
+    }
+    if (!Config::instance().previewEnabled())
+    {
+        return;
+    }
+    if (!canShowPreviewWindow)
+    {
+        return;
+    }
+    const int w = Config::instance().previewWidth();
+    const int h = Config::instance().previewHeight();
+    if (!m_preview)
+    {
+        m_preview = new VideoPreviewWidget();
+        m_preview->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint
+                                  | Qt::WindowStaysOnTopHint);
+        m_preview->resize(w, h);
+    }
+    m_preview->setFile(mpPlayer->file());
+    m_preview->setTimestamp(value);
+    m_preview->preview();
+    if (windowState() != Qt::WindowFullScreen)
+    {
+        m_preview->move(gpos - QPoint(w/2, h));
+    }
+    else
+    {
+        QDesktopWidget desktop;
+        QPoint fullscreenPos = mapToGlobal(QPoint(QCursor::pos().x(), 0))
+                                      - QPoint(w/2, 0)
+                                      + QPoint(0, desktop.screen()->height()
+                                      - m_pWindowBottom->height()
+                                      - mpTimeSlider->height() - h);
+        m_preview->move(fullscreenPos);
+    }
+    m_preview->show();
+}
+
+void MainWindow::hidePreviewWindow()
+{
+    if (mTimeSliderHoverTimer)
+    {
+        killTimer(mTimeSliderHoverTimer);
+        mTimeSliderHoverTimer = 0;
+    }
+    canShowPreviewWindow = false;
+    if (!m_preview)
+    {
+        return;
+    }
+    m_preview->close();
+    delete m_preview;
+    m_preview = NULL;
 }
 
 void MainWindow::workaroundRendererSize()

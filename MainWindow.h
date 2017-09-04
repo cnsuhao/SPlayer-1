@@ -8,9 +8,6 @@
 #include <QWinThumbnailToolBar>
 #include <QWinThumbnailToolButton>
 #include <QWinJumpList>
-#include <QWinJumpListCategory>
-#include <QWinJumpListItem>
-#include <QtWin>
 #include <QSystemTrayIcon>
 #include "StandardDialog/StandardDialog.h"
 #include "Control/SButton.h"
@@ -185,6 +182,9 @@ private slots:
     void seekNextChapter();
     void seekPreviousChapter();
 
+    void showPreviewWindow(const int value, const QPoint gpos);
+    void hidePreviewWindow();
+
 protected:
     void closeEvent(QCloseEvent *e);
     void timerEvent(QTimerEvent *e);
@@ -214,12 +214,9 @@ private:
     void autoLoadExternalSubtitleFile(const QString &filePath);
 
 private:
-    const qreal kVolumeInterval = 0.04;
-    const int kVolumeSliderMax = 100;
-
     bool mIsReady, mHasPendingPlay;
     bool mbStayOnTop;
-    int mCursorTimer, mOSDTimer;
+    int mCursorTimer, mOSDTimer, mTimeSliderHoverTimer;
     int mRepeateMax;
     QStringList mAudioBackends;
     QVBoxLayout *mpPlayerLayout;
