@@ -67,17 +67,18 @@ QString HelpBox::appHelp_HTML()
     static QString appHelp =
             QString::fromLatin1("<h4>%1</h4><ul><li>%2</li><li>%3</li><li>%4</li>"
             "<li>%5</li><li>%6</li><li>%7</li><li>%8</li><li>%9</li><li>%10</li>"
-            "<li>%11</li><li>%12</li></ul>"
-            "<p>%13<a href='" AppWikiURL "'>" AppWikiURL "</a><p>"
+            "<li>%11</li><li>%12</li><li>%13</li></ul>"
+            "<p>%14<a href='" AppWikiURL "'>" AppWikiURL "</a><p>"
            ).arg(tr("Shortcuts"))
             .arg(tr("Switch fullscreen/normal window : Enter / Return / F11"))
             .arg(tr("Open file : Ctrl + O"))
             .arg(tr("Play/Pause : Space"))
             .arg(tr("Quit player/Stop/Exit fullscreen : Esc"))
             .arg(tr("Mute/Sound : M"))
-            .arg(tr("Volume +/- : ⬆ / ⬇ / Mouse Wheel"))
-            .arg(tr("Seek forward/backward : ➡ / ⬅"))
+            .arg(tr("Volume +/- : ↑ / ↓ / Mouse Wheel"))
+            .arg(tr("Seek forward/backward : → / ←"))
             .arg(tr("Seek next/previous chapter : Page Down / Page Up"))
+            .arg(tr("Video capture : Ctrl + S"))
             .arg(tr("Setup : F5"))
             .arg(tr("Help : F1"))
             .arg(tr("Drag video file to the play area can also open it"))

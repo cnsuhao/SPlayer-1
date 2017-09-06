@@ -455,13 +455,21 @@
     </message>
     <message>
         <location filename="../../HelpBox.cpp" line="78"/>
-        <source>Volume +/- : ⬆ / ⬇ / Mouse Wheel</source>
-        <translation>音量 +/-：⬆/⬇/鼠标滚轮</translation>
+        <source>Volume +/- : ↑ / ↓ / Mouse Wheel</source>
+        <translation>音量 + / -：↑ / ↓ / 鼠标滚轮</translation>
     </message>
     <message>
         <location filename="../../HelpBox.cpp" line="79"/>
+        <source>Seek forward/backward : → / ←</source>
+        <translation>前进/后退：→ / ←</translation>
+    </message>
+    <message>
+        <source>Volume +/- : ⬆ / ⬇ / Mouse Wheel</source>
+        <translation type="vanished">音量 +/-：⬆/⬇/鼠标滚轮</translation>
+    </message>
+    <message>
         <source>Seek forward/backward : ➡ / ⬅</source>
-        <translation>前进/后退：➡/⬅</translation>
+        <translation type="vanished">前进/后退：➡/⬅</translation>
     </message>
     <message>
         <source>Volume +/- : Up / Down / Mouse Wheel</source>
@@ -478,21 +486,26 @@
     </message>
     <message>
         <location filename="../../HelpBox.cpp" line="81"/>
+        <source>Video capture : Ctrl + S</source>
+        <translation>视频截图：Ctrl + S</translation>
+    </message>
+    <message>
+        <location filename="../../HelpBox.cpp" line="82"/>
         <source>Setup : F5</source>
         <translation>设置：F5</translation>
     </message>
     <message>
-        <location filename="../../HelpBox.cpp" line="82"/>
+        <location filename="../../HelpBox.cpp" line="83"/>
         <source>Help : F1</source>
         <translation>帮助：F1</translation>
     </message>
     <message>
-        <location filename="../../HelpBox.cpp" line="83"/>
+        <location filename="../../HelpBox.cpp" line="84"/>
         <source>Drag video file to the play area can also open it</source>
         <translation>可以拖拽文件到播放器显示区进行播放</translation>
     </message>
     <message>
-        <location filename="../../HelpBox.cpp" line="84"/>
+        <location filename="../../HelpBox.cpp" line="85"/>
         <source>More information : </source>
         <translation>更多信息请阅读 Wiki： </translation>
     </message>
@@ -530,7 +543,7 @@
         <translation type="vanished">速度. Ctrl+上/下</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="478"/>
+        <location filename="../../MainWindow.cpp" line="489"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
@@ -539,12 +552,12 @@
         <translation type="vanished">截图</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2012"/>
+        <location filename="../../MainWindow.cpp" line="2023"/>
         <source>Capture video frame</source>
         <translation>视频截图</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2013"/>
+        <location filename="../../MainWindow.cpp" line="2024"/>
         <source>Save to</source>
         <translation>保存至</translation>
     </message>
@@ -553,20 +566,20 @@
         <translation type="vanished">打开 Url</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="391"/>
-        <location filename="../../MainWindow.cpp" line="3055"/>
+        <location filename="../../MainWindow.cpp" line="402"/>
+        <location filename="../../MainWindow.cpp" line="3143"/>
         <source>Setup</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="388"/>
-        <location filename="../../MainWindow.cpp" line="3057"/>
+        <location filename="../../MainWindow.cpp" line="399"/>
+        <location filename="../../MainWindow.cpp" line="3145"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="357"/>
-        <location filename="../../MainWindow.cpp" line="3050"/>
+        <location filename="../../MainWindow.cpp" line="368"/>
+        <location filename="../../MainWindow.cpp" line="3138"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
@@ -575,95 +588,95 @@
         <translation type="vanished">打开 URL</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="389"/>
+        <location filename="../../MainWindow.cpp" line="400"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="395"/>
+        <location filename="../../MainWindow.cpp" line="406"/>
         <source>Speed</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="406"/>
+        <location filename="../../MainWindow.cpp" line="417"/>
         <source>Repeat</source>
         <translation>重复</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="408"/>
-        <location filename="../../MainWindow.cpp" line="470"/>
+        <location filename="../../MainWindow.cpp" line="419"/>
+        <location filename="../../MainWindow.cpp" line="481"/>
         <source>Enable</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="415"/>
+        <location filename="../../MainWindow.cpp" line="426"/>
         <source>infinity</source>
         <translation>无限</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="417"/>
+        <location filename="../../MainWindow.cpp" line="428"/>
         <source>Times</source>
         <translation>次数</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="423"/>
+        <location filename="../../MainWindow.cpp" line="434"/>
         <source>From</source>
         <translation>从</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="426"/>
-        <location filename="../../MainWindow.cpp" line="435"/>
+        <location filename="../../MainWindow.cpp" line="437"/>
+        <location filename="../../MainWindow.cpp" line="446"/>
         <source>negative value means from the end</source>
         <translation>负数则从末尾计算</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="432"/>
+        <location filename="../../MainWindow.cpp" line="443"/>
         <source>To</source>
         <translation>到</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="452"/>
+        <location filename="../../MainWindow.cpp" line="463"/>
         <source>Clock</source>
         <translation>时钟</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="457"/>
+        <location filename="../../MainWindow.cpp" line="468"/>
         <source>Auto</source>
         <translation>自动</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="458"/>
+        <location filename="../../MainWindow.cpp" line="469"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="466"/>
+        <location filename="../../MainWindow.cpp" line="477"/>
         <source>Take effect in next playback</source>
         <translation>下次播放生效</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="483"/>
+        <location filename="../../MainWindow.cpp" line="494"/>
         <source>Engine</source>
         <translation>引擎</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="493"/>
+        <location filename="../../MainWindow.cpp" line="504"/>
         <source>FFmpeg supports more subtitles but only render plain text</source>
         <translation>FFmpeg 支持更多字幕但内容以纯文本形式渲染</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="493"/>
+        <location filename="../../MainWindow.cpp" line="504"/>
         <source>LibASS supports ass styles</source>
         <translation>libass支持ass样式</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="504"/>
+        <location filename="../../MainWindow.cpp" line="515"/>
         <source>Auto detect</source>
         <translation>自动检测</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="535"/>
-        <location filename="../../MainWindow.cpp" line="1749"/>
+        <location filename="../../MainWindow.cpp" line="546"/>
+        <location filename="../../MainWindow.cpp" line="1771"/>
         <source>Aspect ratio</source>
         <translation>比例</translation>
     </message>
@@ -676,24 +689,24 @@
         <translation type="vanished">播放器已经成功删除播放历史记录，如果有的话。</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1017"/>
-        <location filename="../../MainWindow.cpp" line="3096"/>
+        <location filename="../../MainWindow.cpp" line="1028"/>
+        <location filename="../../MainWindow.cpp" line="3184"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1036"/>
-        <location filename="../../MainWindow.cpp" line="1135"/>
+        <location filename="../../MainWindow.cpp" line="1047"/>
+        <location filename="../../MainWindow.cpp" line="1146"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1141"/>
+        <location filename="../../MainWindow.cpp" line="1152"/>
         <source>Now playing : </source>
         <translation>正在播放 ： </translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1250"/>
+        <location filename="../../MainWindow.cpp" line="1255"/>
         <source>Volume </source>
         <translation>音量 </translation>
     </message>
@@ -710,12 +723,12 @@
         <translation type="vanished">版权所有 © 2017年， </translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3102"/>
+        <location filename="../../MainWindow.cpp" line="3190"/>
         <source>Play next file</source>
         <translation>播放下一个文件</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3108"/>
+        <location filename="../../MainWindow.cpp" line="3196"/>
         <source>Play previous file</source>
         <translation>播放上一个文件</translation>
     </message>
@@ -725,28 +738,28 @@
         <translation type="vanished">保留所有权利\n</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1649"/>
+        <location filename="../../MainWindow.cpp" line="1671"/>
         <source>Open an URL</source>
         <translation>打开 URL</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1905"/>
+        <location filename="../../MainWindow.cpp" line="1916"/>
         <source>Ended</source>
         <translation>已结束</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2382"/>
+        <location filename="../../MainWindow.cpp" line="2393"/>
         <source>Sound</source>
         <translation>取消静音</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2391"/>
-        <location filename="../../MainWindow.cpp" line="3120"/>
+        <location filename="../../MainWindow.cpp" line="2402"/>
+        <location filename="../../MainWindow.cpp" line="3208"/>
         <source>Mute</source>
         <translation>静音</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2499"/>
+        <location filename="../../MainWindow.cpp" line="2510"/>
         <source>Language changed</source>
         <translation>语言更改</translation>
     </message>
@@ -819,67 +832,67 @@
         <translation type="vanished">更多信息请阅读 Wiki： </translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3006"/>
+        <location filename="../../MainWindow.cpp" line="3094"/>
         <source>Silvery</source>
         <translation>银色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3009"/>
+        <location filename="../../MainWindow.cpp" line="3097"/>
         <source>Blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3012"/>
+        <location filename="../../MainWindow.cpp" line="3100"/>
         <source>Light Blue</source>
         <translation>浅蓝色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3015"/>
+        <location filename="../../MainWindow.cpp" line="3103"/>
         <source>Dark Blue</source>
         <translation>深蓝色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3018"/>
+        <location filename="../../MainWindow.cpp" line="3106"/>
         <source>Gray</source>
         <translation>灰色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3021"/>
+        <location filename="../../MainWindow.cpp" line="3109"/>
         <source>Light Gray</source>
         <translation>浅灰色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3024"/>
+        <location filename="../../MainWindow.cpp" line="3112"/>
         <source>Dark Gray</source>
         <translation>深灰色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3027"/>
+        <location filename="../../MainWindow.cpp" line="3115"/>
         <source>Black</source>
         <translation>黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3030"/>
+        <location filename="../../MainWindow.cpp" line="3118"/>
         <source>Light Black</source>
         <translation>浅黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3033"/>
+        <location filename="../../MainWindow.cpp" line="3121"/>
         <source>Dark Black</source>
         <translation>深黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3036"/>
+        <location filename="../../MainWindow.cpp" line="3124"/>
         <source>PS Black</source>
         <translation>PS黑色</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3039"/>
+        <location filename="../../MainWindow.cpp" line="3127"/>
         <source>Flat Black</source>
         <translation>黑色扁平</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3042"/>
+        <location filename="../../MainWindow.cpp" line="3130"/>
         <source>Flat White</source>
         <translation>白色扁平</translation>
     </message>
@@ -892,13 +905,13 @@
         <translation type="vanished">上一个</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3114"/>
+        <location filename="../../MainWindow.cpp" line="3202"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="358"/>
-        <location filename="../../MainWindow.cpp" line="3052"/>
+        <location filename="../../MainWindow.cpp" line="369"/>
+        <location filename="../../MainWindow.cpp" line="3140"/>
         <source>Open URL</source>
         <translation>打开 URL</translation>
     </message>
@@ -931,169 +944,169 @@
         <translation type="vanished">保留所有权利。</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="3060"/>
+        <location filename="../../MainWindow.cpp" line="3148"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="459"/>
-        <location filename="../../MainWindow.cpp" line="538"/>
+        <location filename="../../MainWindow.cpp" line="470"/>
+        <location filename="../../MainWindow.cpp" line="549"/>
         <source>Video</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="540"/>
+        <location filename="../../MainWindow.cpp" line="551"/>
         <source>Window</source>
         <translation>窗口</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="543"/>
+        <location filename="../../MainWindow.cpp" line="554"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="513"/>
+        <location filename="../../MainWindow.cpp" line="524"/>
         <source>Audio track</source>
         <translation>音轨</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="362"/>
+        <location filename="../../MainWindow.cpp" line="373"/>
         <source>Play list</source>
         <translation>播放列表</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="372"/>
+        <location filename="../../MainWindow.cpp" line="383"/>
         <source>History</source>
         <translation>播放历史</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="390"/>
+        <location filename="../../MainWindow.cpp" line="401"/>
         <source>Donate</source>
         <translation>捐助</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="468"/>
+        <location filename="../../MainWindow.cpp" line="479"/>
         <source>Subtitle</source>
         <translation>字幕</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="474"/>
+        <location filename="../../MainWindow.cpp" line="485"/>
         <source>Auto load</source>
         <translation>自动加载</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="498"/>
+        <location filename="../../MainWindow.cpp" line="509"/>
         <source>Charset</source>
         <translation>字符集</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="505"/>
+        <location filename="../../MainWindow.cpp" line="516"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="511"/>
+        <location filename="../../MainWindow.cpp" line="522"/>
         <source>Auto detect requires libchardet</source>
         <translation>自动检测需要libchardet库</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="519"/>
+        <location filename="../../MainWindow.cpp" line="530"/>
         <source>Channel</source>
         <translation>声道</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="523"/>
+        <location filename="../../MainWindow.cpp" line="534"/>
         <source>As input</source>
         <translation>同输入</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="524"/>
+        <location filename="../../MainWindow.cpp" line="535"/>
         <source>Stereo</source>
         <translation>立体声</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="525"/>
+        <location filename="../../MainWindow.cpp" line="536"/>
         <source>Mono (center)</source>
         <translation>单声道 (中央)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="526"/>
+        <location filename="../../MainWindow.cpp" line="537"/>
         <source>Left</source>
         <translation>左声道</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="527"/>
+        <location filename="../../MainWindow.cpp" line="538"/>
         <source>Right</source>
         <translation>右声道</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="549"/>
+        <location filename="../../MainWindow.cpp" line="560"/>
         <source>Color space</source>
         <translation>色彩空间</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="557"/>
+        <location filename="../../MainWindow.cpp" line="568"/>
         <source>Decoder</source>
         <translation>解码器</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="564"/>
+        <location filename="../../MainWindow.cpp" line="575"/>
         <source>Renderer</source>
         <translation>渲染引擎</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="585"/>
+        <location filename="../../MainWindow.cpp" line="596"/>
         <source>Media information</source>
         <translation>媒体信息</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="667"/>
+        <location filename="../../MainWindow.cpp" line="678"/>
         <source>Open an external audio track</source>
         <translation>打开外部音轨</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2140"/>
+        <location filename="../../MainWindow.cpp" line="2151"/>
         <source>Subtitle files (*.ass *.srt *.sub *.idx)</source>
         <translation>字幕文件 (*.ass *.srt *.sub *.idx)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2141"/>
+        <location filename="../../MainWindow.cpp" line="2152"/>
         <source>Any files (*)</source>
         <translation>所有文件 (*)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2500"/>
+        <location filename="../../MainWindow.cpp" line="2511"/>
         <source>Language has been changed, restart the player to make it go into effect.</source>
         <translation>界面语言已经更改，重启播放器以生效。</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2508"/>
+        <location filename="../../MainWindow.cpp" line="2519"/>
         <source>Skin changed</source>
         <translation>皮肤已更改</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2509"/>
+        <location filename="../../MainWindow.cpp" line="2520"/>
         <source>Skin has been changed, some UI elements need to restart the player to be updated.</source>
         <translation>皮肤已经更改，一些用户界面元素需要重启播放器以实现刷新。</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="251"/>
-        <location filename="../../MainWindow.cpp" line="703"/>
+        <location filename="../../MainWindow.cpp" line="262"/>
+        <location filename="../../MainWindow.cpp" line="714"/>
         <source>not availabe on your platform!</source>
         <translation>你的平台上不可使用!</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="251"/>
+        <location filename="../../MainWindow.cpp" line="262"/>
         <source>Video renderer is </source>
         <translation>视频渲染器为 </translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="726"/>
+        <location filename="../../MainWindow.cpp" line="737"/>
         <source>Can not use this renderer</source>
         <translation>无法使用该渲染器</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="939"/>
+        <location filename="../../MainWindow.cpp" line="950"/>
         <source>Open a media file</source>
         <translation>打开媒体文件</translation>
     </message>
@@ -1106,58 +1119,58 @@
         <translation type="vanished">打开 url</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1684"/>
-        <location filename="../../MainWindow.cpp" line="1703"/>
+        <location filename="../../MainWindow.cpp" line="1706"/>
+        <location filename="../../MainWindow.cpp" line="1725"/>
         <source>External</source>
         <translation>外挂</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1871"/>
+        <location filename="../../MainWindow.cpp" line="1882"/>
         <source>Player error</source>
         <translation>播放错误</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1884"/>
+        <location filename="../../MainWindow.cpp" line="1895"/>
         <source>No media</source>
         <translation>无媒体</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1887"/>
+        <location filename="../../MainWindow.cpp" line="1898"/>
         <source>Invalid meida</source>
         <translation>无效媒体</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1890"/>
+        <location filename="../../MainWindow.cpp" line="1901"/>
         <source>Buffering...</source>
         <translation>缓冲中...</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1893"/>
+        <location filename="../../MainWindow.cpp" line="1904"/>
         <source>Buffered</source>
         <translation>已缓冲</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1896"/>
+        <location filename="../../MainWindow.cpp" line="1907"/>
         <source>Loading...</source>
         <translation>加载中...</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1899"/>
+        <location filename="../../MainWindow.cpp" line="1910"/>
         <source>Loaded</source>
         <translation>已加载</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="1902"/>
+        <location filename="../../MainWindow.cpp" line="1913"/>
         <source>Stalled</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2015"/>
+        <location filename="../../MainWindow.cpp" line="2026"/>
         <source>Format</source>
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="2138"/>
+        <location filename="../../MainWindow.cpp" line="2149"/>
         <source>Open a subtitle file</source>
         <translation>打开字幕文件</translation>
     </message>

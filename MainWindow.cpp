@@ -2779,6 +2779,10 @@ void MainWindow::createShortcuts()
                                                                                   , this);
     connect(previousChapterShortcut, SIGNAL(activated()), this
                                                            , SLOT(seekPreviousChapter()));
+
+    QShortcut *captureShortcut = new QShortcut(QKeySequence::Save, this);
+    connect(captureShortcut, SIGNAL(activated()), mpPlayer->videoCapture()
+            , SLOT(capture()));
 }
 
 void MainWindow::createFullScreenProgressBar()
