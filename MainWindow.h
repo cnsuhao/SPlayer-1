@@ -216,7 +216,7 @@ private:
 private:
     bool mIsReady, mHasPendingPlay;
     bool mbStayOnTop;
-    int mCursorTimer, mOSDTimer, mTimeSliderHoverTimer;
+    int mCursorTimer, mOSDTimer, mTimeSliderHoverTimer, mTimeSliderLeaveTimer;
     int mRepeateMax;
     QStringList mAudioBackends;
     QVBoxLayout *mpPlayerLayout;

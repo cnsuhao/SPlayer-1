@@ -83,6 +83,7 @@ MainWindow::MainWindow(QWidget *parent) : StandardDialog(parent)
   , mCursorTimer(0)
   , mOSDTimer(0)
   , mTimeSliderHoverTimer(0)
+  , mTimeSliderLeaveTimer(0)
   , mRepeateMax(0)
   , mbStayOnTop(false)
   , mpPlayerLayout(NULL)
@@ -1319,6 +1320,15 @@ void MainWindow::timerEvent(QTimerEvent *e)
             showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
         }
     }
+    else if (e->timerId() == mTimeSliderLeaveTimer)
+    {
+        if (mTimeSliderLeaveTimer)
+        {
+            killTimer(mTimeSliderLeaveTimer);
+            mTimeSliderLeaveTimer = 0;
+        }
+        hidePreviewWindow();
+    }
     else if (e->timerId() == mOSDTimer)
     {
         if (Config::instance().getShowLocalTime())
@@ -1829,22 +1839,14 @@ void MainWindow::onTimeSliderHover(int pos, int value)
 {
     mTimeSliderHoverValue = value;
     mCurrentCursorPosition = mapToGlobal(mpTimeSlider->pos() + QPoint(pos, 30));
+    if (mTimeSliderLeaveTimer)
+    {
+        killTimer(mTimeSliderLeaveTimer);
+        mTimeSliderLeaveTimer = 0;
+    }
     if (mTimeSliderHoverTimer == 0)
     {
         mTimeSliderHoverTimer = startTimer(700);
-    }
-    if (Config::instance().previewEnabled())
-    {
-        if (m_preview)
-        {
-            const int interval = 5000;
-            int cur_timestamp = m_preview->timestamp();
-            if (cur_timestamp >= mTimeSliderHoverValue - interval
-                    && cur_timestamp <= mTimeSliderHoverValue + interval)
-            {
-                return;
-            }
-        }
     }
     if (canShowPreviewWindow)
     {
@@ -1854,7 +1856,25 @@ void MainWindow::onTimeSliderHover(int pos, int value)
 
 void MainWindow::onTimeSliderLeave()
 {
-    hidePreviewWindow();
+    if (m_preview)
+    {
+        if (m_preview->isVisible())
+        {
+            m_preview->hide();
+        }
+    }
+    if (mTimeSliderHoverTimer)
+    {
+        killTimer(mTimeSliderHoverTimer);
+        mTimeSliderHoverTimer = 0;
+    }
+    if (mTimeSliderLeaveTimer)
+    {
+        killTimer(mTimeSliderLeaveTimer);
+        mTimeSliderLeaveTimer = 0;
+    }
+    mTimeSliderLeaveTimer = startTimer(5000);
+    canShowPreviewWindow = false;
 }
 
 void MainWindow::handleError(const AVError &e)
@@ -3008,8 +3028,15 @@ void MainWindow::showPreviewWindow(const int value, const QPoint gpos)
         m_preview->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint
                                   | Qt::WindowStaysOnTopHint);
         m_preview->resize(w, h);
+        m_preview->setFile(mpPlayer->file());
     }
-    m_preview->setFile(mpPlayer->file());
+    const qint64 interval = 5000;
+    qint64 currentTimestamp = m_preview->timestamp();
+    if (currentTimestamp >= value - interval
+            && currentTimestamp <= value + interval)
+    {
+        return;
+    }
     m_preview->setTimestamp(value);
     m_preview->preview();
     if (windowState() != Qt::WindowFullScreen)
