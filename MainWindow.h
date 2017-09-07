@@ -182,7 +182,7 @@ private slots:
     void seekNextChapter();
     void seekPreviousChapter();
 
-    void showPreviewWindow(const int value, const QPoint gpos);
+    void showPreviewWindow();
     void closePreviewWindow();
 
 protected:

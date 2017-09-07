@@ -1222,7 +1222,7 @@ void MainWindow::seek(int value)
 {
     mpPlayer->setSeekType(AccurateSeek);
     mpPlayer->seek((qint64)value);
-    showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
+    showPreviewWindow();
 }
 
 void MainWindow::seek()
@@ -1317,7 +1317,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
         if (!canShowPreviewWindow)
         {
             canShowPreviewWindow = true;
-            showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
+            showPreviewWindow();
         }
     }
     else if (e->timerId() == mTimeSliderLeaveTimer)
@@ -1850,7 +1850,7 @@ void MainWindow::onTimeSliderHover(int pos, int value)
     }
     if (canShowPreviewWindow)
     {
-        showPreviewWindow(mTimeSliderHoverValue, mCurrentCursorPosition);
+        showPreviewWindow();
     }
 }
 
@@ -3004,16 +3004,18 @@ void MainWindow::autoLoadExternalSubtitleFile(const QString &filePath)
     }
 }
 
-void MainWindow::showPreviewWindow(const int value, const QPoint gpos)
+void MainWindow::showPreviewWindow()
 {
     if (windowState() != Qt::WindowFullScreen)
     {
-        QToolTip::showText(mCurrentCursorPosition, QTime(0, 0, 0).addMSecs(value)\
+        QToolTip::showText(mCurrentCursorPosition, QTime(0, 0, 0)\
+                           .addMSecs(mTimeSliderHoverValue)\
                            .toString(QString::fromLatin1("HH:mm:ss")));
     }
     else
     {
-        QToolTip::showText(mapToGlobal(QCursor::pos()), QTime(0, 0, 0).addMSecs(value)\
+        QToolTip::showText(mapToGlobal(QCursor::pos()), QTime(0, 0, 0)\
+                           .addMSecs(mTimeSliderHoverValue)\
                            .toString(QString::fromLatin1("HH:mm:ss")));
     }
     if (!Config::instance().previewEnabled())
@@ -3036,16 +3038,16 @@ void MainWindow::showPreviewWindow(const int value, const QPoint gpos)
     }
     const qint64 interval = 5000;
     qint64 currentTimestamp = m_preview->timestamp();
-    if (currentTimestamp >= value - interval
-            && currentTimestamp <= value + interval)
+    if (currentTimestamp >= mTimeSliderHoverValue - interval
+            && currentTimestamp <= mTimeSliderHoverValue + interval)
     {
         return;
     }
-    m_preview->setTimestamp(value);
+    m_preview->setTimestamp(mTimeSliderHoverValue);
     m_preview->preview();
     if (windowState() != Qt::WindowFullScreen)
     {
-        m_preview->move(gpos - QPoint(w/2, h));
+        m_preview->move(mCurrentCursorPosition - QPoint(w/2, h));
     }
     else
     {
