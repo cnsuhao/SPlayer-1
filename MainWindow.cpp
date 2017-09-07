@@ -1327,7 +1327,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
             killTimer(mTimeSliderLeaveTimer);
             mTimeSliderLeaveTimer = 0;
         }
-        hidePreviewWindow();
+        closePreviewWindow();
     }
     else if (e->timerId() == mOSDTimer)
     {
@@ -3060,7 +3060,7 @@ void MainWindow::showPreviewWindow(const int value, const QPoint gpos)
     m_preview->show();
 }
 
-void MainWindow::hidePreviewWindow()
+void MainWindow::closePreviewWindow()
 {
     if (mTimeSliderHoverTimer)
     {

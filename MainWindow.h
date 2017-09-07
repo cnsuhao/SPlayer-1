@@ -183,7 +183,7 @@ private slots:
     void seekPreviousChapter();
 
     void showPreviewWindow(const int value, const QPoint gpos);
-    void hidePreviewWindow();
+    void closePreviewWindow();
 
 protected:
     void closeEvent(QCloseEvent *e);
