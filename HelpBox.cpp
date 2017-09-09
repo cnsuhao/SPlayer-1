@@ -70,9 +70,9 @@ QString HelpBox::appHelp_HTML()
             "<li>%11</li><li>%12</li><li>%13</li></ul>"
             "<p>%14<a href='" AppWikiURL "'>" AppWikiURL "</a><p>"
            ).arg(tr("Shortcuts"))
-            .arg(tr("Switch fullscreen/normal window : Enter / Return / F11"))
+            .arg(tr("Switch fullscreen/normal window : Enter / Return / F11 / Mouse double click"))
             .arg(tr("Open file : Ctrl + O"))
-            .arg(tr("Play/Pause : Space"))
+            .arg(tr("Play/Pause : Space / Mouse single click"))
             .arg(tr("Quit player/Stop/Exit fullscreen : Esc"))
             .arg(tr("Mute/Sound : M"))
             .arg(tr("Volume +/- : ↑ / ↓ / Mouse Wheel"))

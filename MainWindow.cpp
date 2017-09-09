@@ -173,6 +173,8 @@ MainWindow::MainWindow(QWidget *parent) : StandardDialog(parent)
     setMouseTracking(true);
     setAcceptDrops(true);
 
+    mpPlayerLayout->layout()->parentWidget()->installEventFilter(this);
+
     if (QSystemTrayIcon::isSystemTrayAvailable())
     {
         createTrayIcon();
@@ -1540,7 +1542,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                     return true;
                     break;
                 default:
-                    return false;
+                    return StandardDialog::eventFilter(obj, event);
+                    break;
                 }
                 break;
             }
@@ -1569,7 +1572,42 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                 return false;
                 break;
             }
+            default:
+                return StandardDialog::eventFilter(obj, event);
+                break;
             }
+        }
+    }
+    if (obj == mpPlayerLayout->layout()->parentWidget())
+    {
+        QWidget *widget = static_cast<QWidget *>(obj);
+        switch (type)
+        {
+        case QEvent::MouseButtonDblClick:
+        {
+            StandardDialog::mouseDoubleClickEvent(static_cast<QMouseEvent *>(event));
+            if (widget->rect().contains(widget->mapFromGlobal(QCursor::pos())))
+            {
+                toggleFullscreen();
+            }
+            break;
+        }
+        case QEvent::MouseButtonPress:
+        {
+            QMouseEvent *e = static_cast<QMouseEvent *>(event);
+            StandardDialog::mousePressEvent(e);
+            if (e->button() == Qt::LeftButton)
+            {
+                if (widget->rect().contains(widget->mapFromGlobal(QCursor::pos())))
+                {
+                    togglePlayPause();
+                }
+            }
+            break;
+        }
+        default:
+            return StandardDialog::eventFilter(obj, event);
+            break;
         }
     }
     switch (type)
@@ -1589,7 +1627,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         break;
     }
     default:
-        return false;
+        return StandardDialog::eventFilter(obj, event);
+        break;
     }
     return StandardDialog::eventFilter(obj, event);
     //return true; //false: for text input
@@ -2721,7 +2760,7 @@ void MainWindow::destroyFullscreenControlPanel()
     m_pWindowBottom->setParent(this);
     SetBottomWidget(m_pWindowBottom);
     mpTimeSlider->parentWidget()->layout()->removeWidget(mpTimeSlider);
-    mpTimeSlider->setParent(this);
+    mpTimeSlider->setParent(mpPlayerLayout->layout()->parentWidget());
     mpPlayerLayout->layout()->addWidget(mpTimeSlider);
     mpFullscreenControlPanel->close();
     delete mpFullscreenControlPanel;
