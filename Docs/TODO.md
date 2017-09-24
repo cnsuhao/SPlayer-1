@@ -14,7 +14,7 @@
 - 添加可以选择字幕轨道的功能
 - 优化视频预览逻辑，防止播放卡顿
 - 添加进度条右键提示显示章节名称（如果有的话）的功能
-- 添加显示音乐专辑封面图片（FFmpeg：AVStream->attached_pic，是一个AVPacket，也要解码转RGB；Qt：QMediaMetaData->CoverArtImage，是一个QImage，先用MediaType判断是否是音频文件）的功能，播放器窗口大小要适应专辑封面图片的大小：[FFmpeg获取专辑图片的StackOverFlow参考](https://stackoverflow.com/questions/13592709/retrieve-album-art-using-ffmpeg)
+- 添加显示音乐专辑封面图片（FFmpeg：AVStream->attached_pic，是一个AVPacket，也要解码转RGB；Qt：QMediaMetaData->CoverArtImage，是一个QImage，先用MediaType判断是否是音频文件）的功能，播放器窗口大小要适应专辑封面图片的大小。如果音频文件没有专辑图片，则在其所在文件夹中查找是否有放置在外部的专辑封面图片，有就加载，如果音频文件内部和外部都没有专辑图片，则显示默认音频封面。[FFmpeg获取专辑图片的StackOverFlow参考](https://stackoverflow.com/questions/13592709/retrieve-album-art-using-ffmpeg)，[Qt获取专辑图片的知乎参考](https://www.zhihu.com/question/36859497/answer/69449195)
 - 播放列表和播放历史挪到视频画面的左/右边，像一般的播放器那样可以收缩隐藏，同时也可以动态调整放在左边还是放在右边，ini文件可以记录播放列表是显示还是隐藏，底部控制区域右边添加一个控制播放列表隐藏/显示的按钮
 - 添加其他语言翻译
 - 支持高DPI
